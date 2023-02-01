@@ -5,7 +5,24 @@ import { Avatar } from './Avatar'
 import { Comment } from './Comment'
 import styles from './Post.module.css'
 
-export function Post({ author, publishedAt, content }) {
+interface Author {
+  name: string
+  role: string
+  avatarUrl: string
+}
+
+interface Content {
+  type: string
+  content: string
+}
+
+interface PostProps {
+  author: Author
+  publishedAt: Date
+  content: Content[]
+}
+
+export function Post({ author, publishedAt, content }: PostProps) {
   const publishedDateFormatted = format(publishedAt, "dd 'de' LLLL 'às' HH:mm'h'", {
     locale: ptBR,
   })
@@ -19,7 +36,7 @@ export function Post({ author, publishedAt, content }) {
     <article className={styles.post}>
       <header>
         <div className={styles.author}>
-          <Avatar src={author.avatarURL} />
+          <Avatar src={author.avatarUrl} />
           <div className={styles.authorInfo}>
             <strong>{author.name}</strong>
             <span>{author.role}</span>
