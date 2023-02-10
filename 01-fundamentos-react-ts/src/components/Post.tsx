@@ -1,5 +1,6 @@
 import { format, formatDistanceToNow } from 'date-fns'
 import ptBR from 'date-fns/locale/pt-BR'
+import { FormEvent, useState } from 'react'
 
 import { Avatar } from './Avatar'
 import { Comment } from './Comment'
@@ -23,6 +24,9 @@ interface PostProps {
 }
 
 export function Post({ author, publishedAt, content }: PostProps) {
+  const [comments, setComments] = useState([''])
+  const [newCommentText, setNewCommentText] = useState('')
+
   const publishedDateFormatted = format(publishedAt, "dd 'de' LLLL 'às' HH:mm'h'", {
     locale: ptBR,
   })
@@ -31,6 +35,13 @@ export function Post({ author, publishedAt, content }: PostProps) {
     locale: ptBR,
     addSuffix: true
   })
+
+  function handleCreateNewComment(event: FormEvent) {
+    event?.preventDefault()
+
+    setComments([...comments, newCommentText])
+    setNewCommentText('')
+  }
 
   return (
     <article className={styles.post}>
@@ -43,7 +54,7 @@ export function Post({ author, publishedAt, content }: PostProps) {
           </div>
         </div>
 
-        <time 
+        <time
           title={publishedDateFormatted}
           dateTime={publishedAt.toISOString()}
         >
@@ -55,17 +66,20 @@ export function Post({ author, publishedAt, content }: PostProps) {
         {content.map(line => {
           if (line.type === 'paragraph') {
             return <p>{line.content}</p>
-          } else if (line.type === 'link'){
+          } else if (line.type === 'link') {
             return <p><a href="#">{line.content}</a></p>
           }
         })}
       </div>
 
-      <form className={styles.commentForm}>
+      <form onSubmit={handleCreateNewComment} className={styles.commentForm}>
         <strong>Deixe seu feedback</strong>
 
-        <textarea 
+        <textarea
+          name="comment"
           placeholder="Deixe um comentario"
+          value={newCommentText}
+          onChange={e => setNewCommentText(e.target.value)}
         />
 
         <footer>
@@ -74,9 +88,9 @@ export function Post({ author, publishedAt, content }: PostProps) {
       </form>
 
       <div className={styles.commentList}>
-        <Comment />
-        <Comment />
-        <Comment />
+        {comments?.map(comment => {
+          return <Comment content={comment} />
+        })}
       </div>
     </article>
   )
