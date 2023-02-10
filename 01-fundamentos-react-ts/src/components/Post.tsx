@@ -43,8 +43,9 @@ export function Post({ author, publishedAt, content }: PostProps) {
     setNewCommentText('')
   }
 
-  function onDeleteComment(comment: string) {
-    
+  function onDeleteComment(content: string) {
+    const commentsFilteredWithoutThisContent = comments.filter(comment => comment !== content)
+    setComments(commentsFilteredWithoutThisContent)
   }
 
   return (
