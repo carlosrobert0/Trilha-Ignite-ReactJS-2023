@@ -1,6 +1,6 @@
 import { format, formatDistanceToNow } from 'date-fns'
 import ptBR from 'date-fns/locale/pt-BR'
-import { FormEvent, useState } from 'react'
+import { ChangeEvent, FormEvent, InvalidEvent, useState } from 'react'
 
 import { Avatar } from './Avatar'
 import { Comment } from './Comment'
@@ -43,12 +43,12 @@ export function Post({ author, publishedAt, content }: PostProps) {
     setNewCommentText('')
   }
 
-  function handleNewCommentChange(event: any) {
+  function handleNewCommentChange(event: ChangeEvent<HTMLTextAreaElement>) {
     event?.target?.setCustomValidity("");
     setNewCommentText(event?.target.value)
   }
 
-  function handleNewCommentInvalid(event: any) {
+  function handleNewCommentInvalid(event: InvalidEvent<HTMLTextAreaElement>) {
     event?.target?.setCustomValidity('Este campo é obrigatório!');
   }
 
@@ -63,7 +63,9 @@ export function Post({ author, publishedAt, content }: PostProps) {
     <article className={styles.post}>
       <header>
         <div className={styles.author}>
-          <Avatar src={author.avatarUrl} />
+          <Avatar 
+            src={author.avatarUrl} 
+          />
           <div className={styles.authorInfo}>
             <strong>{author.name}</strong>
             <span>{author.role}</span>
