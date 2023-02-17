@@ -43,7 +43,7 @@ export const TaskInput = styled(BaseInput)`
 
 export const WrapperMinutesAmount = styled.div`
   position: relative;
-  width: 4.625rem;
+  width: 4.225rem;
   
   display: flex;
   align-items: center;
