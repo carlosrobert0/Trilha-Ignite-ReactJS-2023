@@ -1,3 +1,4 @@
+import { Minus, Plus } from 'phosphor-react'
 import styled from 'styled-components'
 
 export const FormContainer = styled.div`
@@ -21,7 +22,7 @@ const BaseInput = styled.input`
   font-size: 1.125rem;
   padding: 0 0.5rem;
   color: ${({ theme }) => theme['gray-100']};
-
+  
   &:focus {
     box-shadow: none;
     border-color: ${({ theme }) => theme['green-500']};
@@ -40,6 +41,40 @@ export const TaskInput = styled(BaseInput)`
   }
 `
 
+export const WrapperMinutesAmount = styled.div`
+  position: relative;
+  width: 4.625rem;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
+
+export const MinusIcon = styled(Minus).attrs(props => ({
+  size: '14px', 
+  color: props.theme['gray-500']
+}))`
+  position: absolute;
+  left: 4.5px;
+  cursor: pointer;
+`
+
+export const PlusIcon = styled(Plus).attrs(props => ({
+  size: '14px', 
+  color: props.theme['gray-500']
+}))`
+  position: absolute;
+  right: 4.5px;
+  cursor: pointer;
+`
+
 export const MinutesAmountInput = styled(BaseInput)`
-  width: 4rem;
+  width: 4.625rem;
+  text-align: center;
+    /* esconde os botões padrão */
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 `
