@@ -15,3 +15,6 @@ ex.:
   npm install
   npm run dev
 ```
+
+## Screenshots:
+![image](https://user-images.githubusercontent.com/45858897/223561452-c31d72d1-1c9d-4b8b-bc5b-2fa322515c3d.png)
