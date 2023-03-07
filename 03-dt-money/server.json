@@ -23,6 +23,14 @@
       "category": "educação",
       "price": 1980,
       "createdAt": "2023-03-06T16:10:45.330Z"
+    },
+    {
+      "description": "Educacao",
+      "price": 10000,
+      "category": "frontend",
+      "type": "outcome",
+      "createdAt": "2023-03-07T14:44:05.650Z",
+      "id": 4
     }
   ]
 }
