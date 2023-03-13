@@ -4,7 +4,7 @@ export const globalStyles = globalCss({
   '*': {
     margin: 0,
     padding: 0,
-    borderBox: 'box-sizing'
+    boxSizing: 'border-box'
   },
 
   body: {
